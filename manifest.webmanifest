@@ -1,10 +1,10 @@
 {
-  "name": "Our Shopping List",
-  "short_name": "Shopping",
+  "name": "John & Shelleys Shopping List",
+  "short_name": "John & Shelleys",
   "description": "A shared shopping list arranged in the order you walk around the shop.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f5f4ef",
-  "theme_color": "#123b32",
+  "background_color": "#f4f5ef",
+  "theme_color": "#1b4032",
   "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }
