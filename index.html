@@ -30,13 +30,7 @@
         <p id="accessMessage">Sign in with Microsoft to connect this app to your OneDrive.</p>
       </div>
       <button class="primary-button" id="signInButton" type="button">Sign in with Microsoft</button>
-      <form id="shareForm" hidden>
-        <label class="sr-only" for="shareEmail">Shelley’s Microsoft account email</label>
-        <input id="shareEmail" type="email" autocomplete="email" placeholder="Shelley’s Microsoft email" required>
-        <button class="primary-button" type="submit">Share list</button>
-      </form>
-      <label class="sr-only" for="shareLink">App link for Shelley</label>
-      <input id="shareLink" class="share-link" readonly hidden aria-label="App link for Shelley">
+      <button class="text-button" id="copyListLinkButton" type="button" hidden>Copy app link</button>
       <button class="text-button" id="signOutButton" type="button" hidden>Sign out</button>
       <p class="sync-status" id="syncStatus" role="status"></p>
     </section>
