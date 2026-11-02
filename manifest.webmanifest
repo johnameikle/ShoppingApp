@@ -1,6 +1,6 @@
 {
-  "name": "John & Shelleys Shopping List",
-  "short_name": "John & Shelleys",
+  "name": "John & Shelley",
+  "short_name": "John & Shelley",
   "description": "A shared shopping list arranged in the order you walk around the shop.",
   "start_url": "./",
   "display": "standalone",
