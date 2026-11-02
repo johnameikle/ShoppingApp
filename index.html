@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#123b32">
+  <meta name="description" content="A shared, aisle-ordered shopping list for Morrisons, Aldi and M&S.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Our Shopping List</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">SHARED SHOPPING</p>
+        <h1>Our list</h1>
+        <p class="subtitle" id="listSummary">Ready for the weekly shop</p>
+      </div>
+      <div class="header-actions">
+        <button class="icon-button" id="printButton" aria-label="Print shopping list" title="Print list">⌁</button>
+        <button class="icon-button" id="settingsButton" aria-label="Edit shop layout" title="Edit layout">⚙</button>
+      </div>
+    </header>
+
+    <nav class="store-tabs" aria-label="Choose a shop" id="storeTabs"></nav>
+
+    <main>
+      <section class="add-card" aria-labelledby="addHeading">
+        <div class="add-copy">
+          <span class="spark">＋</span>
+          <div>
+            <h2 id="addHeading">Add an item</h2>
+            <p>We’ll put it in the right section.</p>
+          </div>
+        </div>
+        <form id="addForm" autocomplete="off">
+          <label class="sr-only" for="itemInput">Item name</label>
+          <input id="itemInput" name="item" placeholder="e.g. bananas, milk, wraps…" required>
+          <label class="sr-only" for="quantityInput">Quantity</label>
+          <select id="quantityInput" aria-label="Quantity">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5</option>
+          </select>
+          <button class="primary-button" type="submit">Add</button>
+        </form>
+        <div class="suggestions" id="suggestions" aria-label="Quick additions"></div>
+      </section>
+
+      <section class="list-toolbar" aria-label="List controls">
+        <div class="progress-copy">
+          <strong id="remainingCount">0 items</strong>
+          <span id="progressText">Nothing added yet</span>
+        </div>
+        <button class="text-button" id="clearDoneButton">Clear checked</button>
+      </section>
+
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">✓</div>
+        <h2>Your list is clear</h2>
+        <p>Add something above and it will appear in aisle order.</p>
+      </div>
+
+      <div class="shopping-list" id="shoppingList" aria-live="polite"></div>
+    </main>
+
+    <footer class="app-footer">
+      <span id="saveStatus">Saved on this device</span>
+      <button class="install-button" id="installButton" hidden>Install app</button>
+    </footer>
+  </div>
+
+  <dialog id="layoutDialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-header">
+        <div><p class="eyebrow">SHOP LAYOUT</p><h2 id="layoutTitle">Edit section order</h2></div>
+        <button class="icon-button close-button" value="cancel" aria-label="Close">×</button>
+      </div>
+      <p class="dialog-help">Move sections into the order you walk around the shop. New items will follow this route automatically.</p>
+      <ol class="layout-list" id="layoutList"></ol>
+      <button class="primary-button full-width" value="done">Done</button>
+    </form>
+  </dialog>
+
+  <template id="sectionTemplate">
+    <section class="aisle-section">
+      <div class="section-heading"><span class="section-number"></span><div><h2></h2><p></p></div></div>
+      <ul class="item-list"></ul>
+    </section>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
