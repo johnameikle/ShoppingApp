@@ -24,6 +24,24 @@
       </div>
     </header>
 
+    <section class="shared-access" id="sharedAccess" aria-label="Shared OneDrive list" hidden>
+      <div class="shared-copy">
+        <h2 id="accessHeading">Your shared list</h2>
+        <p id="accessMessage">Sign in with Microsoft to connect this app to your OneDrive.</p>
+      </div>
+      <button class="primary-button" id="signInButton" type="button">Sign in with Microsoft</button>
+      <form id="shareForm" hidden>
+        <label class="sr-only" for="shareEmail">Shelley’s Microsoft account email</label>
+        <input id="shareEmail" type="email" autocomplete="email" placeholder="Shelley’s Microsoft email" required>
+        <button class="primary-button" type="submit">Share list</button>
+      </form>
+      <label class="sr-only" for="shareLink">App link for Shelley</label>
+      <input id="shareLink" class="share-link" readonly hidden aria-label="App link for Shelley">
+      <button class="text-button" id="signOutButton" type="button" hidden>Sign out</button>
+      <p class="sync-status" id="syncStatus" role="status"></p>
+    </section>
+
+    <div id="sharedApp">
     <nav class="store-tabs" aria-label="Choose a shop" id="storeTabs"></nav>
 
     <main>
@@ -70,6 +88,7 @@
       <button class="install-button" id="installButton" hidden>Install app</button>
     </footer>
   </div>
+  </div>
 
   <dialog id="layoutDialog">
     <form method="dialog" class="dialog-card">
@@ -90,6 +109,8 @@
     </section>
   </template>
 
-  <script src="app.js" defer></script>
+  <script defer src="vendor/msal-browser.min.js"></script>
+  <script defer src="microsoft-config.js"></script>
+  <script defer src="app.js"></script>
 </body>
 </html>
