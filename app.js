@@ -26,11 +26,64 @@ const KEYWORDS = {
 };
 const QUICK_ITEMS = ["Bananas","Milk","Bread","Cheese","Tomatoes","Eggs"];
 
-const initialState = {store:"morrisons",items:[],routes:structuredClone(DEFAULT_ROUTES)};
+const SEED_ITEMS = [
+  {id:"photo-m-01",name:"Bananas",quantity:1,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-02",name:"Tomatoes",quantity:2,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-03",name:"Satsumas",quantity:1,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-04",name:"Kiwis",quantity:1,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-05",name:"Avocados",quantity:1,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-06",name:"Onion",quantity:1,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-07",name:"Potatoes",quantity:1,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-08",name:"Beets?",quantity:1,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-09",name:"Kale",quantity:1,store:"morrisons",section:"Fruit & vegetables",done:false},
+  {id:"photo-m-10",name:"Rosemary",quantity:1,store:"morrisons",section:"Herbs & chilled snacks",done:false},
+  {id:"photo-m-11",name:"Sciattulo ravioli",quantity:1,store:"morrisons",section:"Cupboard ingredients",done:false},
+  {id:"photo-m-12",name:"Sourdough",quantity:1,store:"morrisons",section:"Bread & wraps",done:false},
+  {id:"photo-m-13",name:"Bread",quantity:1,store:"morrisons",section:"Bread & wraps",done:false},
+  {id:"photo-m-14",name:"Garlic bread",quantity:1,store:"morrisons",section:"Bread & wraps",done:false},
+  {id:"photo-m-15",name:"Wraps",quantity:1,store:"morrisons",section:"Bread & wraps",done:false},
+  {id:"photo-m-16",name:"Sweets / chocolate for Dad",quantity:1,store:"morrisons",section:"Sweets, crisps & cakes",done:false},
+  {id:"photo-m-17",name:"Crisps",quantity:1,store:"morrisons",section:"Sweets, crisps & cakes",done:false},
+  {id:"photo-m-18",name:"Jaffa cakes",quantity:1,store:"morrisons",section:"Sweets, crisps & cakes",done:false},
+  {id:"photo-m-19",name:"Tunnock's",quantity:1,store:"morrisons",section:"Sweets, crisps & cakes",done:false},
+  {id:"photo-m-20",name:"Eggs",quantity:1,store:"morrisons",section:"Cupboard ingredients",done:false},
+  {id:"photo-m-21",name:"2 × butter beans",quantity:2,store:"morrisons",section:"Tinned food",done:false},
+  {id:"photo-m-22",name:"Beans",quantity:1,store:"morrisons",section:"Tinned food",done:false},
+  {id:"photo-m-23",name:"Sardines",quantity:1,store:"morrisons",section:"Tinned food",done:false},
+  {id:"photo-m-24",name:"Mayo",quantity:1,store:"morrisons",section:"Sauces",done:false},
+  {id:"photo-m-25",name:"Tomato puree",quantity:1,store:"morrisons",section:"Sauces",done:false},
+  {id:"photo-m-26",name:"Crème fraîche",quantity:1,store:"morrisons",section:"Dairy",done:false},
+  {id:"photo-m-27",name:"Milk",quantity:1,store:"morrisons",section:"Dairy",done:false},
+  {id:"photo-m-28",name:"Cheese",quantity:1,store:"morrisons",section:"Dairy",done:false},
+  {id:"photo-m-29",name:"Butter",quantity:1,store:"morrisons",section:"Dairy",done:false},
+  {id:"photo-m-30",name:"Red wine vinegar",quantity:1,store:"morrisons",section:"Vinegar & condiments",done:false},
+  {id:"photo-m-31",name:"Ham joint",quantity:1,store:"morrisons",section:"Meat",done:false},
+  {id:"photo-m-32",name:"Magnums",quantity:1,store:"morrisons",section:"Frozen",done:false},
+  {id:"photo-m-33",name:"Pot waffles",quantity:1,store:"morrisons",section:"Frozen",done:false},
+  {id:"photo-m-34",name:"Wedges",quantity:1,store:"morrisons",section:"Frozen",done:false},
+  {id:"photo-m-35",name:"Ketchup",quantity:1,store:"morrisons",section:"Sauces",done:false},
+  {id:"photo-m-36",name:"Fairy softener",quantity:1,store:"morrisons",section:"Laundry & cleaning",done:false},
+  {id:"photo-m-37",name:"Sponges",quantity:1,store:"morrisons",section:"Laundry & cleaning",done:false},
+  {id:"photo-m-38",name:"Flash spray",quantity:1,store:"morrisons",section:"Laundry & cleaning",done:false},
+  {id:"photo-m-39",name:"Loo roll",quantity:1,store:"morrisons",section:"Other",done:false},
+  {id:"photo-m-40",name:"Cards (Bab? + Sheila)",quantity:1,store:"morrisons",section:"Other",done:false},
+  {id:"photo-m-41",name:"Body moisturiser",quantity:1,store:"morrisons",section:"Other",done:false},
+  {id:"photo-a-01",name:"Sun-dried tomatoes",quantity:1,store:"aldi",section:"Fruit & vegetables",done:false},
+  {id:"photo-a-02",name:"Dark chocolate",quantity:1,store:"aldi",section:"Cupboard ingredients",done:false},
+  {id:"photo-a-03",name:"Rice",quantity:1,store:"aldi",section:"Cupboard ingredients",done:false},
+  {id:"photo-a-04",name:"Sourdough baguette",quantity:1,store:"aldi",section:"Bakery",done:false},
+  {id:"photo-ms-01",name:"Soup",quantity:1,store:"marks",section:"Tinned food",done:false},
+  {id:"photo-ms-02",name:"Yoghurts",quantity:1,store:"marks",section:"Dairy",done:false},
+  {id:"photo-ms-03",name:"Cream",quantity:1,store:"marks",section:"Dairy",done:false},
+  {id:"photo-ms-04",name:"Sausages",quantity:1,store:"marks",section:"Meat",done:false},
+  {id:"photo-ms-05",name:"Fruit",quantity:1,store:"marks",section:"Fruit & vegetables",done:false},
+  {id:"photo-ms-06",name:"Fruit cake",quantity:1,store:"marks",section:"Treats",done:false}
+];
+const initialState = {store:"morrisons",items:SEED_ITEMS.map(item=>({...item})),routes:structuredClone(DEFAULT_ROUTES),photoListImported:true};
 let state = loadState(); let deferredInstall;
 const $ = id => document.getElementById(id);
 
-function loadState(){try{const saved=JSON.parse(localStorage.getItem("shopping-state-v1"));return {...initialState,...saved,routes:{...structuredClone(DEFAULT_ROUTES),...(saved?.routes||{})}}}catch{return structuredClone(initialState)}}
+function loadState(){try{const saved=JSON.parse(localStorage.getItem("shopping-state-v1"));if(!saved)return structuredClone(initialState);const loaded={...initialState,...saved,routes:{...structuredClone(DEFAULT_ROUTES),...(saved?.routes||{})}};if(!saved.photoListImported){const existing=new Set(loaded.items.map(item=>`${item.store}:${item.name.toLowerCase()}`));for(const item of SEED_ITEMS){const key=`${item.store}:${item.name.toLowerCase()}`;if(!loaded.items.some(existingItem=>existingItem.id===item.id)&&!existing.has(key)){loaded.items.push({...item});existing.add(key)}}loaded.photoListImported=true;localStorage.setItem("shopping-state-v1",JSON.stringify(loaded))}return loaded}catch{return structuredClone(initialState)}}
 function saveState(){localStorage.setItem("shopping-state-v1",JSON.stringify(state));$("saveStatus").textContent="Saved just now";setTimeout(()=>$("saveStatus").textContent="Saved on this device",1500)}
 function classify(name,store){const route=state.routes[store];const lower=name.toLowerCase();for(const [section,words] of Object.entries(KEYWORDS)){if(route.includes(section)&&words.some(word=>lower.includes(word)))return section}return route.at(-1)}
 function addItem(name,quantity=1){const clean=name.trim();if(!clean)return;state.items.push({id:crypto.randomUUID(),name:clean,quantity:Number(quantity),store:state.store,section:classify(clean,state.store),done:false});saveState();render();}
@@ -52,3 +105,4 @@ window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();def
 $("installButton").onclick=async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$("installButton").hidden=true};
 if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));
 render();
+
